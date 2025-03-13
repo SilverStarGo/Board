@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- typealiases : mybatis에서 클래스정보를 가져오려면 전체경로를 사용해야 하는데 전체경로를 매번 적는 것보단
+     축약어로 클래스를 읽어올 수 있도록 해줌-->
+    <typeAliases>
+        <!--클래스 alias가 들어갈 공간-->
+        <typeAlias type="com.highgarden.springboot_board.dto.BoardDTO" alias="board"/>
+    <!--indexController 예시-->
+    </typeAliases>
+</configuration>

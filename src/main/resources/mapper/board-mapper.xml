@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Board">
+    <!-- sql문이 작성되는 공간 -->
+    <!-- parameterType에 "board"라고 되어있는 부분은 sql의 매개변수의 타입이 board라는 뜻
+        제공되는 기본형 변수에 board라는 것은 없기 때문에 이것이 사용자 정의 매개변수라는 것을 알 수 있음-->
+    <insert id="save" parameterType="board">
+        insert into board_table(boardTitle, boardWriter, boardPass, boardContents)
+        values(#{boardTitle}, #{boardWriter}, #{boardPass}, #{boardContents})
+    </insert>
+</mapper>
