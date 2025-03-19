@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 추후 사진첨부/다중첨부 기능을 위해 form태그의 enctype을 multipart/form-data로 설정 -->
+<form action="/save" method="post" enctype="multipart/form-data">
+    제목: <input type="text" name="boardTitle"><br>
+    작성자: <input type="text" name="boardWriter"><br>
+    비밀번호: <input type="text" name="boardPass"><br>
+    내용: <textarea name="boardContents" cols="30" rows="10"></textarea>
+    <input type="submit" value="작성">
+</form>
+</body>
+</html>
