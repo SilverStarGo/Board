@@ -29,4 +29,13 @@ public class BoardRepository {
         // 상세조회는 글내용에 대한 데이터를 반환해야 하기 때문에 sql.selectOne으로 데이터를 받아 BoardDTO객체에 담아 반환
         return sql.selectOne("Board.findById", id);
     }
+
+    public void update(BoardDTO boardDTO){
+        sql.update("Board.update", boardDTO);
+    }
+
+    public void delete(Long id){
+        sql.delete("Board.delete", id);
+    }
+
 }

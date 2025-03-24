@@ -38,11 +38,36 @@ public class BoardController {
 
     @GetMapping("/{id}")
     public String findById(@PathVariable("id")Long id, Model model){ //PathVariable : 자동으로 url요청을 변수에 담을 수 있다.
-        //조회수 처리
+        // 조회수 처리
         boardService.updateHits(id);
-        //상세내용 가져오기
+        // 상세내용 가져오기
         BoardDTO boardDTO = boardService.findById(id);
         model.addAttribute("board", boardDTO);
         return "detail";
     }
+
+    // 수정버튼 클릭시 수정화면으로 넘어가도록 하는 메서드(GET)
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable("id")Long id, Model model){
+        BoardDTO boardDTO = boardService.findById(id);
+        model.addAttribute("board", boardDTO);
+        return "update";
+    }
+    // DB에 실질적으로 수정내용을 요청하는 메서드(POST)
+    @PostMapping("/update/{id}")
+    public String update(BoardDTO boardDTO, Model model){
+        // update 요청
+        boardService.update(boardDTO);
+        // findById로 수정된 내용을 다시조회
+        BoardDTO dto = boardService.findById(boardDTO.getId());
+        model.addAttribute("board", dto);
+        return "detail";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id){
+        boardService.delete(id);
+        return "redirect:/list"; // redirect:/list로 하는 이유는 /list로 요청하게 되면 정적인 페이지를 반환하여 글목록이 보이지 않기 때문
+    }
+
 }

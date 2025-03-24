@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{|/update/${board.id}|}" method="post" name="updateForm">
+    <input type="hidden" name="id" th:value="${board.id}">
+    writer: <input type="text" name="boardWriter" th:value="${board.boardWriter}" readonly> <br>
+    title: <input type="text" name="boardTitle" th:value="${board.boardTitle}"> <br>
+    pass: <input type="text" name="boardPass" id="board-pass"> <br>
+    contents: <textarea name="boardContents" cols="30" rows="10" th:text="${board.boardContents}"></textarea> <br>
+    <input type="button" value="수정" onclick="board_update()">
+</form>
+</body>
+<script th:inline="javascript">
+    // post요청을 submit 하기 전에 현재 글의 비밀번호와 사용자가 입력한 비밀번호가 일치하는지 검증
+    // 일치하는 경우 서버로 요청을 보내고, 일치하지 않는 경우 알림 창을 띄워 "비밀번호가 틀립니다!"라는 메시지를 내보냄.
+    const board_update = () => {
+        const boardPass = document.getElementById("board-pass").value;
+        const passDB = [[${board.boardPass}]];
+        if(boardPass == passDB) {
+            updateForm.submit();
+        } else{
+        alert("비밀번호가 틀립니다!");
+        }
+    }
+</script>
+</html>

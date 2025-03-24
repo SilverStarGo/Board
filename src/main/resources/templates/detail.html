@@ -46,13 +46,15 @@
 </body>
 <script th:inline="javascript">
     const listReq= () =>{
-        location.href="/list"
+        location.href="/list";
     }
+    // 수정버튼 클릭시 실행되는 함수
     const updateReq= () =>{
-
+        location.href=`/update/[[${board.id}]]`;
     }
+    // 삭제버튼 클릭시 실행되는 함수
     const deleteReq= () =>{
-
+        location.href=`/delete/[[${board.id}]]`;
     }
 </script>
 </html>
