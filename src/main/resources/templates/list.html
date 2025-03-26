@@ -24,7 +24,9 @@
         <th>조회수</th>
     </tr>
     <tr th:each="board: ${boardList}">
-        <td th:text="${board.id}"></td>
+        <td>
+            <a th:text="${board.id}" th:href="@{|${board.id}|}"></a>
+        </td>
         <td>
             <a th:text="${board.boardTitle}" th:href="@{|${board.id}|}"></a> <!-- th:href라는 문법을 통해 동적으로 url로 리다이렉션 -->
         </td>

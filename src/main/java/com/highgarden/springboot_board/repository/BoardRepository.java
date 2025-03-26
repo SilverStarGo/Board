@@ -1,6 +1,7 @@
 package com.highgarden.springboot_board.repository;
 
 import com.highgarden.springboot_board.dto.BoardDTO;
+import com.highgarden.springboot_board.dto.BoardFileDTO;
 import lombok.RequiredArgsConstructor;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -13,8 +14,9 @@ import java.util.List;
 public class BoardRepository {
     private final SqlSessionTemplate sql;
 
-    public void save(BoardDTO boardDTO){
+    public BoardDTO save(BoardDTO boardDTO){
         sql.insert("Board.save", boardDTO);
+        return boardDTO;
     }
 
     public List<BoardDTO> findAll(){
@@ -38,4 +40,12 @@ public class BoardRepository {
         sql.delete("Board.delete", id);
     }
 
+    // saveFile 메서드는 save 메서드를 처리할 때만 사용되는 메서드이기 때문에 controller 단에서 생성할 필요가 없음
+    // repository 단에서만 선언하고 파일이 있는 경우에만 사용
+    public void saveFile(BoardFileDTO boardFileDTO){
+        sql.insert("Board.saveFile", boardFileDTO);
+    }
+    public List<BoardFileDTO> findFile(Long id){
+        return sql.selectList("Board.findFile", id);
+    }
 }
